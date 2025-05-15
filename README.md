@@ -70,5 +70,6 @@ Form Data:
 - imageRequest.board_id = 2
 
 ## 🤝 License
-MIT License © Dimitar Barev
+
+MIT License © [Dimitar Barev](https://github.com/dimitarbarev)
 
