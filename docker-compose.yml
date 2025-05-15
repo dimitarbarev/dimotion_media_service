@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mysql:
     image: mysql:8.0
@@ -16,7 +14,9 @@ services:
       - ./mySQL-init-image/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   app:
-    image: media-service-image:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: media-service
     depends_on:
       - mysql
