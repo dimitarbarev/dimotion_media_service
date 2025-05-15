@@ -36,4 +36,4 @@ jobs:
         run: docker build -t media-service:latest .
 
       - name: Compose up (test deployment)
-        run: docker-compose up -d
+        run: docker compose up -d
