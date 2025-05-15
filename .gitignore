@@ -1,0 +1,22 @@
+# Gradle build output
+/build
+/.gradle
+
+# IntelliJ IDEA project files
+*.iml
+.idea/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+
+# JARs
+*.jar
+
+# Environment files
+.env
+
+# Docker ignore (optional)
+*.pid
