@@ -20,3 +20,4 @@
 
 # Docker ignore (optional)
 *.pid
+java_pid*.hprof
