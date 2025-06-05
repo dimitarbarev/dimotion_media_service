@@ -1,7 +1,7 @@
 package org.example.model;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImageRequest {
-    @NonNull
+    @NotNull
     private MultipartFile file;
 
     @NotNull

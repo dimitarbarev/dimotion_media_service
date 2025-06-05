@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -23,8 +24,10 @@ public class ImageEntity {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] data;
 
+    @NotNull
     private Long boardId;
 
+    @NotNull
     private Long userId;
 }
 

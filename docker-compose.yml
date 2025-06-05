@@ -1,32 +1,40 @@
-services:
-  mysql:
-    image: mysql:8.0
-    container_name: dimotion-mysql
-    environment:
-      MYSQL_DATABASE: dimotion_media_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
-      MYSQL_ROOT_PASSWORD: rootpass
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-      - ./mySQL-init-image/init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: media-service
-    depends_on:
-      - mysql
-    ports:
-      - "8082:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/dimotion_media_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: pass
-    restart: on-failure
-
-volumes:
-  mysql-data:
+#services:
+#  mysql:
+#    image: mysql:8.0
+#    container_name: dimotion-mysql
+#    environment:
+#      MYSQL_DATABASE: dimotion_media_db
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: pass
+#      MYSQL_ROOT_PASSWORD: rootpass
+#    ports:
+#      - "3307:3306"
+#    volumes:
+#      - mysql-data:/var/lib/mysql
+#      - ./mySQL-init-image/init.sql:/docker-entrypoint-initdb.d/init.sql
+#
+#  app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: media-service
+#    depends_on:
+#      - mysql
+#    ports:
+#      - "8082:8080"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/dimotion_media_db
+#      SPRING_DATASOURCE_USERNAME: user
+#      SPRING_DATASOURCE_PASSWORD: pass
+#    restart: on-failure
+#
+#  rabbitmq:
+#    image: rabbitmq:3-management
+#    container_name: dimotion-rabbitmq
+#    ports:
+#      - "5672:5672"     # Message broker port
+#      - "15672:15672"   # Web UI port
+#
+#
+#volumes:
+#  mysql-data:

@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.business.ImageService;
 import org.example.model.ImageRequest;
@@ -12,22 +13,27 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/images")
 @RequiredArgsConstructor
+@Valid
 public class ImageController {
 
     private final ImageService imageService;
 
-    @GetMapping("/verify")
-    public ResponseEntity<String> verifyRunning() {
-        return ResponseEntity.ok("The system is running.");
-    }
-
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> upload(@ModelAttribute ImageRequest imageRequest) {
+    public ResponseEntity<?> upload(@Valid @ModelAttribute ImageRequest imageRequest) {
         try {
+            System.out.println("🖥️ The Image Controller is triggered in the BE!");
+            System.out.println("🖥️ This is the imageRequest");
+            System.out.println(imageRequest);
+
+            // Save the image with the validated request
             ImageResponse saved = imageService.save(imageRequest);
+
+            System.out.println("🖥️ This is the saved image");
+            System.out.println(saved);
+
             return ResponseEntity.ok(saved);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Upload failed");

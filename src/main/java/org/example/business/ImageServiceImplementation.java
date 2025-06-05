@@ -59,12 +59,21 @@ public class ImageServiceImplementation implements ImageService {
 
     @Override
     public void deleteByBoardId(Long boardId) {
-        imageRepository.deleteByBoardId(boardId);
+        System.out.println("👉🏻Deletion event reached the board service. About to send it to the DB with id: ");
+        System.out.println(boardId);
+        List<ImageEntity> images = imageRepository.findByBoardId(boardId);
+
+        System.out.println("🗑️ Deleting " + images.size() + " images for boardId: " + boardId);
+        imageRepository.deleteAll(images);
+        System.out.println("✅Deletion completed");
     }
 
     @Override
     public void deleteByUserId(Long userId) {
-        imageRepository.deleteByUserId(userId);
+        System.out.println("🧹 Deleting all images for user ID: " + userId);
+        List<ImageEntity> images = imageRepository.findByUserId(userId);
+        imageRepository.deleteAll(images);
+        System.out.println("✅Deletion completed");
     }
 
     // Helper to map entity → response
