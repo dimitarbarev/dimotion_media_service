@@ -50,3 +50,15 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         with:
           args: detect --source=. --report-path=gitleaks.json --report-format=json
+
+  semgrep-scan:
+    name: Semgrep Code Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: "auto"
